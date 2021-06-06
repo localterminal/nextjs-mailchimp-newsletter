@@ -8,22 +8,24 @@ export default function Newsletter () {
   const [errorMessage, setErrorMessage] = useState(null)
 
 
+  const mailchimp = require("@mailchimp/mailchimp_marketing");
+
+  mailchimp.setConfig({
+    apiKey: "a953e159e00f6e8e5580d4a9531eb5a2-us6",
+    server: "us6",
+  });
+  
+  async function run() {
+    const response = await mailchimp.ping.get();
+    console.log(response);
+  }
+  
+
+
 
   const subscribe = async () => {
 
-    const mailchimp = require("@mailchimp/mailchimp_marketing");
-
-    mailchimp.setConfig({
-      apiKey: "a953e159e00f6e8e5580d4a9531eb5a2-us6",
-      server: "us6",
-    });
-    
-    async function run() {
-      const response = await mailchimp.ping.get();
-      console.log(response);
-    }
-    
-    run();
+ 
 
 
 
@@ -62,7 +64,7 @@ export default function Newsletter () {
         <button
           type="button"
           disabled={state === "LOADING"}
-          onClick={subscribe}
+          onClick={run}
         >
           {state === "LOADING" ? "Loading" : "Subscribe"}
         </button>
