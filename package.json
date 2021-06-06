@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3080",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "@mailchimp/mailchimp_marketing": "^3.0.44",
+    "axios": "^0.21.1",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"

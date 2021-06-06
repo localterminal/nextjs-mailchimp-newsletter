@@ -2,21 +2,46 @@ import { useState } from "react"
 import axios from "axios"
 import styles from "./newsletter.module.css"
 
-export default () => {
+export default function Newsletter () {
   const [email, setEmail] = useState("")
   const [state, setState] = useState("IDLE")
   const [errorMessage, setErrorMessage] = useState(null)
 
+
+
   const subscribe = async () => {
+
+    const mailchimp = require("@mailchimp/mailchimp_marketing");
+
+    mailchimp.setConfig({
+      apiKey: "a953e159e00f6e8e5580d4a9531eb5a2-us6",
+      server: "us6",
+    });
+    
+    async function run() {
+      const response = await mailchimp.ping.get();
+      console.log(response);
+    }
+    
+    run();
+
+
+
+
+    console.log("click")
     setState("LOADING")
     setErrorMessage(null)
     try {
+      console.log("click2")
       const response = await axios.post("/api/newsletter", { email })
       setState("SUCCESS")
+      console.log("click3")
     } catch (e) {
       setErrorMessage(e.response.data.error)
       setState("ERROR")
     }
+
+    
   }
 
   return (
