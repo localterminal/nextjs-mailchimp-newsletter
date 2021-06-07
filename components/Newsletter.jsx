@@ -9,6 +9,7 @@ export default function Newsletter () {
 
 
   const mailchimp = require("@mailchimp/mailchimp_marketing");
+  console.log("yupi");
 
   mailchimp.setConfig({
     apiKey: "a953e159e00f6e8e5580d4a9531eb5a2-us6",
@@ -18,9 +19,10 @@ export default function Newsletter () {
   async function run() {
     const response = await mailchimp.ping.get();
     console.log(response);
+    console.log("yupi2");
   }
   
-
+  console.log("yupi3");
 
 
   const subscribe = async () => {
